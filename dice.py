@@ -121,4 +121,4 @@ try:
 
 except KeyboardInterrupt:
     print("\n")
-    rprint("goodbye [bold yellow]:)[/bold yellow]")
+    rprint("Goodbye [bold yellow]:)[/bold yellow]")
