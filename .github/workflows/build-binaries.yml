@@ -69,15 +69,6 @@ jobs:
       with:
         tag_name: v${{ github.run_number }}-${{ matrix.artifact-name }}
         name: Terminal Dice v${{ github.run_number }} - ${{ matrix.release-name }}
-        body: |
-          🎲 **Terminal Dice - ${{ matrix.release-name }}**
-          
-          ### Installation:
-          ${{ matrix.os == 'windows-latest' && '- **Windows**: Double-click `terminal-dice.exe` or run from command prompt' || '- **Unix-like**: Make executable with `chmod +x terminal-dice` then run with `./terminal-dice`' }}
-          
-          Built from commit: ${{ github.sha }}
-          Platform: ${{ matrix.release-name }}
-          Run: ${{ github.run_number }}
         files: ${{ steps.find-exe.outputs.executable-path }}
         draft: false
         prerelease: false
