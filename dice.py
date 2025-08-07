@@ -16,16 +16,24 @@ try:
     print("")
 
     rprint("[bold red]Roll the Dice![/bold red]")
-    rprint("[bold yellow]*d4, d6, d8, d10, d12, d20*[/bold yellow]")
+    rprint("[bold yellow]*d4, d6, d8, d10, d12, d20, coin flip*[/bold yellow]")
 
     print("")
 
     whichDice = input("Which dice would you like to roll? ")
-    diceCount = input("How many dice would you like to roll? (press enter to continue with one) ")
-    if diceCount == "":
-        diceCount = 1
+    diceCount = ""
+    if whichDice != "coin flip":
+        diceCount = input("How many dice would you like to roll? (press enter to continue with one) ")
+        
+        if diceCount == "":
+            diceCount = 1
 
     dice = str(diceCount) + str(whichDice)
+    rollMessage = f"Rolling dice...{dice}"
+
+    def coinFlip():
+        coinFlip = random.choice(["heads", "tails"])
+        return coinFlip
 
     def d4():
         d4 = sum(random.randint(1,4) for _ in range(int(diceCount)))
@@ -71,7 +79,10 @@ try:
         totalSum = sum(integerValues)
         return totalSum, integerValues
 
-    if whichDice == "d4":
+    if whichDice == "coin flip":
+        rollMessage = "Flipping a coin..."
+        result = coinFlip()
+    elif whichDice == "d4":
         result = d4()
     elif whichDice == "d6":
         result = d6()
@@ -89,20 +100,20 @@ try:
         exit()
 
     print("")
-
-    rollTime = Spinner("dots2", text=f"Rolling dice...{dice}")
+    rollTime = Spinner("dots2", text= rollMessage)
     with Live(rollTime):
         time.sleep(2)
     print("")
 
-    print("Your number is: ",result)
-    os.environ[f'RESULT_{str(random.randint(100,999))}'] = str(result)
+    print(f"Your result is...{result}!")
+    if whichDice != "coin flip":
+        os.environ[f'RESULT_{str(random.randint(100,999))}'] = str(result)
 
     if ranBefore == True:
         sumAll = input("Would you like to sum all of your results together? (Y/n) ").strip()
         if sumAll.lower() in ["","y","yes"]:
             total, individualValues = addAllNumbers()
-            rollTime = Spinner("dots2", text="Adding all rolls...")
+            rollTime = Spinner("dots2", text="Adding all results...")
             with Live(rollTime):
                 time.sleep(3)
             print("")
