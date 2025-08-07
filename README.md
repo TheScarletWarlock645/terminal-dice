@@ -4,7 +4,10 @@
 > This is just a fun dice roller in terminal I made for DnD and to practice my python :)
 
 ## About:
-This is a terminal based application for rolling dice. Its pretty simple. Users can choose between a d6, 8, 10, 12, and 20. Users can also roll multiples of dice, for example: 4d8. If the program is ran again consecutivley, users can sum all of their results together. Have fun.
+This is a terminal based application for rolling dice. Its pretty simple. Users can choose between a d6, 8, 10, 12, 20, and a coin flip option. Users can also roll multiples of dice, for example: 4d8. If the program is ran again consecutivley, users can sum all of their results together. Have fun.
+
+## Use:
+To use the app, start by entering the dice that you've selected, and then the amount of times you would like to roll it (not neccacary with coin flip). After that you will be promted whether you would like to run the app again. If you have already run it, it will prompt you whether you want to sum all of the results you've gathered (though, this option is not available with the coin flip).
 
 ## To download:
 If you are interested in downloading this project as an actual app, here are the downloads and download instructions.
