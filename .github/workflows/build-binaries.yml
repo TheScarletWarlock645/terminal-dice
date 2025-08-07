@@ -61,27 +61,7 @@ jobs:
         path: ${{ steps.find-exe.outputs.executable-path }}
         retention-days: 90
 
-    - name: Create Release
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: v${{ github.run_number }}-${{ github.sha }}
-        name: Release v${{ github.run_number }}
-        body: |
-          Automated release of binaries
-          
-          Built from commit: ${{ github.sha }}
-          
-          **Download the appropriate binary for your system:**
-          - Linux x64: Download `terminal-dice-linux-x64`
-          - Windows x64: Download `terminal-dice-windows-x64` 
-          - macOS ARM64 (Apple Silicon): Download `terminal-dice-macos-arm64`
-          - macOS Intel x64: Download `terminal-dice-macos-x64`
-        files: ${{ steps.find-exe.outputs.executable-path }}
-        draft: false
-        prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # REMOVED: Individual release creation steps that were causing conflicts
 
   create-combined-release:
     needs: build
@@ -95,30 +75,35 @@ jobs:
         path: ./artifacts
 
     - name: Display structure of downloaded files
-      run: ls -la ./artifacts
+      run: ls -R ./artifacts
 
     - name: Create combined release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: release-${{ github.run_number }}
-        name: Cross-Platform Release ${{ github.run_number }}
+        tag_name: v${{ github.run_number }}
+        name: Terminal Dice v${{ github.run_number }}
         body: |
           🚀 **Cross-Platform Binary Release**
           
           This release contains binaries for all supported platforms:
           
           ### Download Instructions:
-          1. **Linux (x64)**: Download `terminal-dice-linux-x64/terminal-dice`
-          2. **Windows (x64)**: Download `terminal-dice-windows-x64/terminal-dice.exe` 
-          3. **macOS (Apple Silicon)**: Download `terminal-dice-macos-arm64/terminal-dice`
-          4. **macOS (Intel)**: Download `terminal-dice-macos-x64/terminal-dice`
+          1. **Linux (x64)**: Download `terminal-dice` from the `terminal-dice-linux-x64` folder
+          2. **Windows (x64)**: Download `terminal-dice.exe` from the `terminal-dice-windows-x64` folder
+          3. **macOS (Apple Silicon)**: Download `terminal-dice` from the `terminal-dice-macos-arm64` folder
+          4. **macOS (Intel)**: Download `terminal-dice` from the `terminal-dice-macos-x64` folder
           
           ### Installation:
           - **Linux/macOS**: Make executable with `chmod +x terminal-dice` then run with `./terminal-dice`
           - **Windows**: Double-click `terminal-dice.exe` or run from command prompt
           
           Built from commit: ${{ github.sha }}
-        files: ./artifacts/**/*
+          Run: ${{ github.run_number }}
+        files: |
+          ./artifacts/terminal-dice-linux-x64/terminal-dice
+          ./artifacts/terminal-dice-windows-x64/terminal-dice.exe
+          ./artifacts/terminal-dice-macos-arm64/terminal-dice
+          ./artifacts/terminal-dice-macos-x64/terminal-dice
         draft: false
         prerelease: false
       env:
