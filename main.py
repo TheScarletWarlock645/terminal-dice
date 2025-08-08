@@ -15,8 +15,11 @@ try:
 
     print("")
 
-    rprint("[bold red]Roll the Dice![/bold red]")
-    rprint("[bold yellow]*d4, d6, d8, d10, d12, d20, coin flip*[/bold yellow]")
+    diceType = ["d4", "d6", "d8", "d10", "d12", "d20", "coin flip"]
+    rprint("[bold yellow]Roll the Dice![/bold yellow]")
+    print("")
+    for i, item in enumerate(diceType, 1):
+        rprint(f"[bold yellow]{i}. {item}[/bold yellow]")
 
     print("")
 
