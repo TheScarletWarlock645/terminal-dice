@@ -15,7 +15,7 @@ If you are interested in downloading this project as an actual app, here are the
 | Version | Link |
 | ----------- | ----------- |
 | MacOS (Apple Silicon) | [Terminal Dice - macOS Apple Silicon](https://github.com/TheScarletWarlock645/terminal-dice/releases/download/v1.1/terminal-dice-macos-arm64.zip) |
-| MacOS (Intel) | [Terminal Dice - macOS Intel](https://github.com/TheScarletWarlock645/terminal-dice/releases/download/v1.0/terminal-dice-macos-intel.zip) |
+| MacOS (Intel) | [Terminal Dice - macOS Intel](https://github.com/TheScarletWarlock645/terminal-dice/releases/download/v1.1/terminal-dice-macos-intel.zip) |
 | Windows | [Terminal Dice - Windows x64](https://github.com/TheScarletWarlock645/terminal-dice/releases/download/v1.1/terminal-dice-windows.zip) |
 | Linux | [ Terminal Dice - Linux x64](https://github.com/TheScarletWarlock645/terminal-dice/releases/download/v1.1/terminal-dice-linux.zip) |
 | SOURCE CODE | [Source Code (.zip)](https://github.com/TheScarletWarlock645/terminal-dice/archive/refs/tags/v1.1.zip) |
