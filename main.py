@@ -16,21 +16,24 @@ try:
     print("")
 
     diceType = ["d4", "d6", "d8", "d10", "d12", "d20", "coin flip"]
+    diceNumber = [1, 2, 3, 4, 5, 6, 7]
+
     rprint("[bold yellow]Roll the Dice![/bold yellow]")
+    print("Type the number next to the dice to select")
     print("")
     for i, item in enumerate(diceType, 1):
         rprint(f"[bold yellow]{i}. {item}[/bold yellow]")
 
     print("")
 
-    whichDice = input("Which dice would you like to roll? ")
-    if whichDice not in diceType:
+    whichDice = int(input("Which dice would you like to roll? "))
+    if whichDice not in diceNumber:
         print("")
         rprint("[bold red]ERROR: Please enter a valid dice number[/bold red]")
         exit()
-        
+
     diceCount = ""
-    if whichDice != "coin flip":
+    if whichDice != 7:
         diceCount = input("How many dice would you like to roll? (press enter to continue with one) ")
         
         if diceCount == "":
@@ -39,7 +42,13 @@ try:
             rprint("[bold red]ERROR: Please enter a valid dice option[/bold red]")
             exit()
 
-    dice = str(diceCount) + str(whichDice)
+    def diceName(number):
+        try:
+            return  str(diceType[int(number) - 1])
+        except:
+            return "Number is out of range"
+    
+    dice = str(diceCount) + str(diceName(whichDice))
     rollMessage = f"Rolling dice...{dice}"
 
     def coinFlip():
@@ -90,20 +99,20 @@ try:
         totalSum = sum(integerValues)
         return totalSum, integerValues
 
-    if whichDice == "coin flip":
+    if whichDice == 7:
         rollMessage = "Flipping a coin..."
         result = coinFlip()
-    elif whichDice == "d4":
+    elif whichDice == 1:
         result = d4()
-    elif whichDice == "d6":
+    elif whichDice == 2:
         result = d6()
-    elif whichDice == "d8":
+    elif whichDice == 3:
         result = d8()
-    elif whichDice == "d10":
+    elif whichDice == 4:
         result = d10()
-    elif whichDice == "d12":
+    elif whichDice == 5:
         result = d12()
-    elif whichDice == "d20":
+    elif whichDice == 6:
         result = d20()
 
     print("")
@@ -113,10 +122,10 @@ try:
     print("")
 
     print(f"Your result is...{result}!")
-    if whichDice != "coin flip":
+    if whichDice != 7:
         os.environ[f'RESULT_{str(random.randint(100,999))}'] = str(result)
 
-    if whichDice != "coin flip":
+    if whichDice != 7:
         if ranBefore == True:
             sumAll = input("Would you like to sum all of your results together? (Y/n) ").strip()
             if sumAll.lower() in ["","y","yes"]:
