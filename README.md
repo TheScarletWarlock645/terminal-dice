@@ -71,7 +71,7 @@ Then press **Win + R**, type **sysdm.cpl**, and press **Enter**. Click **Environ
 ```bash
 which terminal-dice
 ```
-
+**Windows**
 ```cmd
 where terminal-dice
 ```
