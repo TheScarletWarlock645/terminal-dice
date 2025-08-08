@@ -65,7 +65,7 @@ Run the following commands to uninstall the app:
 del "%USERPROFILE%\bin\terminal-dice.exe"
 ```
 Then press **Win + R**, type **sysdm.cpl**, and press **Enter**. Click **Environment Variables...**. In **User variables** find **Path** and click **Edit...**. Find and remove your the entry that has your bin directory. Click OK for all dialogs.\
-\
+
 ## Verify Uninstallation:
 **Unix-like:**
 ```bash
