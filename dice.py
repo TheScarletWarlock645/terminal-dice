@@ -109,17 +109,18 @@ try:
     if whichDice != "coin flip":
         os.environ[f'RESULT_{str(random.randint(100,999))}'] = str(result)
 
-    if ranBefore == True:
-        sumAll = input("Would you like to sum all of your results together? (Y/n) ").strip()
-        if sumAll.lower() in ["","y","yes"]:
-            total, individualValues = addAllNumbers()
-            rollTime = Spinner("dots2", text="Adding all results...")
-            with Live(rollTime):
-                time.sleep(3)
-            print("")
-            print(f"The sum of all the results is {total}, summed from {individualValues}")
-        else:
-            print("")
+    if whichDice != "coin flip":
+        if ranBefore == True:
+            sumAll = input("Would you like to sum all of your results together? (Y/n) ").strip()
+            if sumAll.lower() in ["","y","yes"]:
+                total, individualValues = addAllNumbers()
+                rollTime = Spinner("dots2", text="Adding all results...")
+                with Live(rollTime):
+                    time.sleep(3)
+                print("")
+                print(f"The sum of all the results is {total}, summed from {individualValues}")
+            else:
+                print("")
 
     rollAgain = input("Would you like to roll again? (Y/n)").strip()
 
