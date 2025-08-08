@@ -1,0 +1,56 @@
+name: Build and Release Binaries
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version label for this build'
+        required: false
+        default: 'latest'
+        type: string
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            output-suffix: ".exe"
+            asset-name: "windows"
+          - os: ubuntu-latest  
+            output-suffix: ""
+            asset-name: "linux-ubuntu"
+          - os: macos-latest
+            output-suffix: ""
+            asset-name: "macos-arm64"
+          - os: macos-13
+            output-suffix: ""
+            asset-name: "macos-intel"
+
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+        
+    - name: Build executable
+      run: |
+        pyinstaller --onefile --name "terminal-dice-${{ matrix.asset-name }}" --clean --distpath dist/ main.py
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: terminal-dice-${{ matrix.asset-name }}
+        path: dist/terminal-dice-${{ matrix.asset-name }}${{ matrix.output-suffix }}
+        retention-days: 90
