@@ -49,7 +49,7 @@ jobs:
         pyinstaller --onefile --name "terminal-dice-${{ matrix.asset-name }}" --clean --distpath dist/ main.py
         
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: terminal-dice-${{ matrix.asset-name }}
         path: dist/terminal-dice-${{ matrix.asset-name }}${{ matrix.output-suffix }}
