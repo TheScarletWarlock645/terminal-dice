@@ -145,6 +145,8 @@ try:
         filePath = os.path.abspath(__file__)
         os.system(f"python3 {filePath}")
     else:
+        print("")
+        rprint("Goodbye [bold yellow]:))[/bold yellow]")
         exit()
 
 except KeyboardInterrupt:
