@@ -30,6 +30,9 @@ try:
         
         if diceCount == "":
             diceCount = 1
+        elif not diceCount.isdigit():
+            rprint("[bold red]ERROR: Please enter a valid dice option[/bold red]")
+            exit()
 
     dice = str(diceCount) + str(whichDice)
     rollMessage = f"Rolling dice...{dice}"
