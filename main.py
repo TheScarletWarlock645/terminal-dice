@@ -24,6 +24,11 @@ try:
     print("")
 
     whichDice = input("Which dice would you like to roll? ")
+    if whichDice not in diceType:
+        print("")
+        rprint("[bold red]ERROR: Please enter a valid dice number[/bold red]")
+        exit()
+        
     diceCount = ""
     if whichDice != "coin flip":
         diceCount = input("How many dice would you like to roll? (press enter to continue with one) ")
@@ -100,10 +105,6 @@ try:
         result = d12()
     elif whichDice == "d20":
         result = d20()
-    else:
-        print("")
-        rprint("[bold red]ERROR: Please enter a valid dice number[/bold red]")
-        exit()
 
     print("")
     rollTime = Spinner("dots2", text= rollMessage)
